@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Anne Chevalier</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 [data-theme="dark"] {
   --bg: #0d0f1a;
@@ -37,18 +37,22 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s,color .35s;min-height:100vh;overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s,color .35s;min-height:100vh;overflow-x:hidden;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;border-bottom:1px solid var(--border);background:var(--bg);transition:background .35s;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text);text-decoration:none;cursor:pointer;font-weight:400;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:var(--text);text-decoration:none;cursor:pointer;font-weight:400;}
 .nav-right{display:flex;align-items:center;gap:2.5rem;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--accent);}
-.toggle-btn{width:40px;height:22px;border-radius:11px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;position:relative;transition:background .3s;flex-shrink:0;}
-.toggle-btn::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));transition:transform .3s ease;}
-[data-theme="light"] .toggle-btn::after{transform:translateX(18px);}
+.toggle-wrap{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;transition:border-color .2s,background .2s;flex-shrink:0;}
+.toggle-wrap:hover{border-color:var(--accent);background:var(--tag-bg);}
+.toggle-icon{font-size:16px;line-height:1;}
+.toggle-icon.moon{display:block;}
+.toggle-icon.sun{display:none;}
+[data-theme="light"] .toggle-icon.moon{display:none;}
+[data-theme="light"] .toggle-icon.sun{display:block;}
 
 /* PAGES */
 .page{display:none;}
@@ -56,13 +60,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 
 /* HERO */
 #home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 3rem 4rem;max-width:900px;margin:0 auto;position:relative;}
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(4rem,9vw,7.5rem);line-height:.92;color:var(--text);margin-bottom:1.8rem;font-weight:400;}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,9vw,7.5rem);line-height:.92;color:var(--text);margin-bottom:1.8rem;font-weight:400;}
 .hero-name span{display:block;}
-.hero-name em{color:transparent;-webkit-text-stroke:1px var(--accent);font-style:italic;}
+.hero-name em{color:var(--accent2);font-style:normal;}
 .hero-sub{font-size:1.05rem;font-weight:300;color:var(--muted);max-width:500px;line-height:1.85;margin-bottom:2.8rem;}
 .hero-sub strong{color:var(--accent);font-weight:600;}
 .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border-radius:8px;font-size:.85rem;font-weight:500;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'Nunito',sans-serif;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border-radius:8px;font-size:.85rem;font-weight:500;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
 .btn-solid{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
 .btn-solid:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 8px 24px var(--glow);}
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
@@ -79,7 +83,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 /* SECTIONS */
 .section-wrap{max-width:900px;margin:0 auto;padding:7rem 3rem;}
 .section-label{font-size:.72rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;}
-.section-heading{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:3.5rem;line-height:1.15;}
+.section-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:3.5rem;line-height:1.15;}
 
 /* ABOUT */
 .about-body{display:grid;grid-template-columns:1.5fr 1fr;gap:4.5rem;align-items:start;}
@@ -88,7 +92,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .about-cards{display:flex;flex-direction:column;gap:1rem;}
 .info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;transition:border-color .2s,box-shadow .2s;}
 .info-card:hover{border-color:var(--accent);box-shadow:0 4px 20px var(--glow);}
-.info-num{font-family:'Playfair Display',serif;font-size:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.3rem;}
+.info-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.3rem;}
 .info-label{font-size:.78rem;color:var(--muted);font-weight:400;}
 
 /* PROJECTS - vertical scroll */
@@ -108,8 +112,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .proj-card.p4:hover{border-color:var(--accent);}
 
 .proj-inner{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;}
-.proj-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:400;line-height:1;opacity:.08;color:var(--text);font-style:italic;flex-shrink:0;}
-.proj-name{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:.4rem;line-height:1.2;}
+.proj-num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:400;line-height:1;opacity:.08;color:var(--text);font-style:italic;flex-shrink:0;}
+.proj-name{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:.4rem;line-height:1.2;}
 .proj-role{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.04em;margin-bottom:1rem;text-transform:uppercase;}
 .proj-desc{font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;}
@@ -136,10 +140,10 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
 /* PROJECT PAGE */
 #project-page{display:none;padding-top:60px;}
 .proj-page-wrap{max-width:780px;margin:0 auto;padding:5rem 3rem 8rem;}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.83rem;font-weight:500;color:var(--muted);cursor:pointer;margin-bottom:3rem;transition:color .2s;background:none;border:none;padding:0;font-family:'Nunito',sans-serif;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.83rem;font-weight:500;color:var(--muted);cursor:pointer;margin-bottom:3rem;transition:color .2s;background:none;border:none;padding:0;font-family:'DM Sans',sans-serif;}
 .back-btn:hover{color:var(--accent);}
 .proj-page-accent{height:3px;width:48px;border-radius:2px;margin-bottom:1.8rem;}
-.proj-page-name{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:400;color:var(--text);margin-bottom:.6rem;line-height:1.1;}
+.proj-page-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:400;color:var(--text);margin-bottom:.6rem;line-height:1.1;}
 .proj-page-role{font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2.5rem;}
 .proj-page-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:3rem;}
 .proj-divider{border:none;border-top:1px solid var(--border);margin:2.5rem 0;}
@@ -186,7 +190,10 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
       <li><a href="#skills" onclick="showMain()">Skills</a></li>
       <li><a href="#contact" onclick="showMain()">Contact</a></li>
     </ul>
-    <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme"></button>
+    <div class="toggle-wrap" id="themeToggle" role="button" aria-label="Toggle theme">
+      <span class="toggle-icon moon" style="font-size:15px;filter:grayscale(1) brightness(1.8);">🌙</span>
+      <span class="toggle-icon sun" style="font-size:15px;filter:grayscale(1) brightness(1.8);">☀️</span>
+    </div>
   </div>
 </nav>
 
@@ -199,7 +206,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
       <span>Anne</span>
       <em>Chevalier</em>
     </h1>
-    <p class="hero-sub h2">Security-focused IT graduate. I build full-stack applications and break them with <strong>automated security testing</strong>.</p>
+    <p class="hero-sub h2">Security-focused IT student with a strong interest in <strong>automated testing</strong> and <strong>vulnerability detection</strong>.</p>
     <div class="hero-btns h3">
       <a href="#projects" class="btn btn-solid" onclick="showMain()">View Projects</a>
       <a href="https://github.com/achev2" target="_blank" class="btn btn-ghost">GitHub</a>
@@ -222,8 +229,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
         </div>
         <div class="about-cards fade-up d3">
           <div class="info-card"><div class="info-num">3.4</div><div class="info-label">GPA · B.S. Information Technology</div></div>
-          <div class="info-card"><div class="info-num">4</div><div class="info-label">Projects across web, mobile & hardware</div></div>
-          <div class="info-card"><div class="info-num">220+</div><div class="info-label">Automated tests for enterprise capstone</div></div>
           <div class="info-card"><div class="info-num">May '26</div><div class="info-label">Graduation · Available for full-time roles</div></div>
         </div>
       </div>
@@ -313,7 +318,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
       <h2 class="section-heading fade-up d1" style="text-align:center;">Let's Connect</h2>
       <p class="contact-text fade-up d2">Graduating May 2026 and actively looking for entry-level roles in cybersecurity, QA engineering, or IT. If you're hiring or just want to talk tech, I'd love to hear from you.</p>
       <div class="contact-btns fade-up d3">
-        <a href="mailto:achevv21@gmail.com" class="btn btn-solid">achevv21@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#afceccc7cad9d99d9eefc8c2cec6c381ccc0c2" class="btn btn-solid"><span class="__cf_email__" data-cfemail="d3b2b0bbb6a5a5e1e293b4beb2babffdb0bcbe">[email&#160;protected]</span></a>
         <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-ghost">LinkedIn</a>
         <a href="https://github.com/achev2" target="_blank" class="btn btn-ghost">GitHub</a>
         <a href="Anne_Chevalier_Resume.pdf" target="_blank" class="btn btn-ghost">Resume</a>
@@ -332,7 +337,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const projects = {
   nerdvana: {
     name:'NERDVANA', role:'QA & Security Engineer · Senior Capstone, Southeastern Louisiana University · Spring 2026',
@@ -432,10 +437,4 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+const observer = new
