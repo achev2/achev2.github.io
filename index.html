@@ -98,8 +98,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
 .proj-dot{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));flex-shrink:0;margin-top:.55rem;}
 .proj-page-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:.6rem 1.1rem;transition:border-color .2s,background .2s;margin-top:.5rem;}
 .proj-page-link:hover{border-color:var(--accent);background:var(--tag-bg);}
-.proj-screenshots{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
-.proj-screenshot{width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
+.proj-screenshots{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
+.proj-screenshot{width:100%;border-radius:10px;border:1px solid var(--border);object-fit:contain;max-height:500px;background:var(--surface2);}
 @keyframes heroFade{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .h1{opacity:0;animation:heroFade .6s ease forwards .2s;}
 .h2{opacity:0;animation:heroFade .6s ease forwards .4s;}
