@@ -288,7 +288,8 @@ function showProject(id) {
       p.images.map(function(src){ return '<img src="'+src+'" style="width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;" alt="Project screenshot">'; }).join('') +
     '</div>';
   }
-  document.getElementById('proj-content').innerHTML = '<div class="proj-page-accent" style="background:'+p.accent+';"></div><h1 class="proj-page-name">'+p.name+'</h1><p class="proj-page-role">'+p.role+'</p><div class="proj-page-tags">'+tags+'</div><hr class="proj-divider"><p class="proj-section-title">Overview</p>'+desc+'+(p.imgs ? p.imgs : '')+'<hr class="proj-divider"><p class="proj-section-title">What I Did</p><div class="proj-highlights-list">'+hl+'</div>'+imagesHtml+'<hr class="proj-divider">'+linkHtml;
+  var imgsHtml = p.imgs ? p.imgs : '';
+  document.getElementById('proj-content').innerHTML = '<div class="proj-page-accent" style="background:'+p.accent+';"></div><h1 class="proj-page-name">'+p.name+'</h1><p class="proj-page-role">'+p.role+'</p><div class="proj-page-tags">'+tags+'</div><hr class="proj-divider"><p class="proj-section-title">Overview</p>'+desc+imgsHtml+'<hr class="proj-divider"><p class="proj-section-title">What I Did</p><div class="proj-highlights-list">'+hl+'</div><hr class="proj-divider">'+linkHtml;
   document.getElementById('main-site').classList.remove('active');
   document.getElementById('project-page').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
