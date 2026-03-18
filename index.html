@@ -4,63 +4,28 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Anne Chevalier</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-[data-theme="dark"] {
-  --bg: #0d0f1a;
-  --surface: #131629;
-  --surface2: #1a1f38;
-  --border: rgba(255,255,255,0.08);
-  --text: #e4e8f5;
-  --muted: #6b7599;
-  --accent: #6c8dd4;
-  --accent2: #9b87d4;
-  --accent3: #5bc4d4;
-  --glow: rgba(108,141,212,0.15);
-  --tag-bg: rgba(108,141,212,0.12);
-  --tag-text: #8aaae8;
-}
-[data-theme="light"] {
-  --bg: #f4f6fd;
-  --surface: #ffffff;
-  --surface2: #eaedfa;
-  --border: rgba(0,0,0,0.07);
-  --text: #151929;
-  --muted: #6b7599;
-  --accent: #3d6bc4;
-  --accent2: #7355c4;
-  --accent3: #2aa8b8;
-  --glow: rgba(61,107,196,0.1);
-  --tag-bg: rgba(61,107,196,0.08);
-  --tag-text: #3d6bc4;
-}
-
+[data-theme="dark"]{--bg:#0d0f1a;--surface:#131629;--surface2:#1a1f38;--border:rgba(255,255,255,0.08);--text:#e4e8f5;--muted:#6b7599;--accent:#6c8dd4;--accent2:#9b87d4;--accent3:#5bc4d4;--glow:rgba(108,141,212,0.15);--tag-bg:rgba(108,141,212,0.12);--tag-text:#8aaae8;}
+[data-theme="light"]{--bg:#f4f6fd;--surface:#ffffff;--surface2:#eaedfa;--border:rgba(0,0,0,0.07);--text:#151929;--muted:#6b7599;--accent:#3d6bc4;--accent2:#7355c4;--accent3:#2aa8b8;--glow:rgba(61,107,196,0.1);--tag-bg:rgba(61,107,196,0.08);--tag-text:#3d6bc4;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s,color .35s;min-height:100vh;overflow-x:hidden;}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;border-bottom:1px solid var(--border);background:var(--bg);transition:background .35s;}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:var(--text);text-decoration:none;cursor:pointer;font-weight:400;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:var(--text);text-decoration:none;cursor:pointer;font-weight:600;}
 .nav-right{display:flex;align-items:center;gap:2.5rem;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--accent);}
-.toggle-wrap{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;transition:border-color .2s,background .2s;flex-shrink:0;}
-.toggle-wrap:hover{border-color:var(--accent);background:var(--tag-bg);}
-.toggle-icon{font-size:16px;line-height:1;}
-.toggle-icon.moon{display:block;}
-.toggle-icon.sun{display:none;}
-[data-theme="light"] .toggle-icon.moon{display:none;}
-[data-theme="light"] .toggle-icon.sun{display:block;}
-
-/* PAGES */
+.toggle-btn{width:34px;height:34px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:border-color .2s,background .2s;flex-shrink:0;filter:grayscale(1) brightness(1.5);}
+.toggle-btn:hover{border-color:var(--accent);background:var(--tag-bg);}
 .page{display:none;}
 .page.active{display:block;}
-
-/* HERO */
 #home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 3rem 4rem;max-width:900px;margin:0 auto;position:relative;}
-.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,9vw,7.5rem);line-height:.92;color:var(--text);margin-bottom:1.8rem;font-weight:400;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1;}
+.orb1{width:400px;height:400px;background:radial-gradient(circle,rgba(108,141,212,0.18),transparent 70%);top:-100px;right:-100px;}
+.orb2{width:300px;height:300px;background:radial-gradient(circle,rgba(155,135,212,0.12),transparent 70%);bottom:0;left:-80px;}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(3.8rem,9vw,7rem);line-height:.92;color:var(--text);margin-bottom:1.8rem;font-weight:700;}
 .hero-name span{display:block;}
 .hero-name em{color:var(--accent2);font-style:normal;}
 .hero-sub{font-size:1.05rem;font-weight:300;color:var(--muted);max-width:500px;line-height:1.85;margin-bottom:2.8rem;}
@@ -71,37 +36,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .btn-solid:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 8px 24px var(--glow);}
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
 .btn-ghost:hover{color:var(--text);border-color:var(--accent);transform:translateY(-2px);}
-
-/* Hero decorations */
-.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1;}
-.orb1{width:400px;height:400px;background:radial-gradient(circle,rgba(108,141,212,0.18),transparent 70%);top:-100px;right:-100px;}
-.orb2{width:300px;height:300px;background:radial-gradient(circle,rgba(155,135,212,0.12),transparent 70%);bottom:0;left:-80px;}
-
 .scroll-hint{position:absolute;bottom:2.5rem;left:3rem;font-size:.75rem;color:var(--muted);font-weight:400;display:flex;align-items:center;gap:.7rem;}
 .scroll-hint::before{content:'';display:block;width:28px;height:1px;background:var(--muted);}
-
-/* SECTIONS */
 .section-wrap{max-width:900px;margin:0 auto;padding:7rem 3rem;}
 .section-label{font-size:.72rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;}
-.section-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:3.5rem;line-height:1.15;}
-
-/* ABOUT */
+.section-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:700;color:var(--text);margin-bottom:3.5rem;line-height:1.15;}
 .about-body{display:grid;grid-template-columns:1.5fr 1fr;gap:4.5rem;align-items:start;}
 .about-text p{font-size:.97rem;font-weight:300;color:var(--muted);line-height:1.95;margin-bottom:1.3rem;}
 .about-text p strong{color:var(--text);font-weight:600;}
 .about-cards{display:flex;flex-direction:column;gap:1rem;}
 .info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;transition:border-color .2s,box-shadow .2s;}
 .info-card:hover{border-color:var(--accent);box-shadow:0 4px 20px var(--glow);}
-.info-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.3rem;}
+.info-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.3rem;font-weight:700;}
 .info-label{font-size:.78rem;color:var(--muted);font-weight:400;}
-
-/* PROJECTS - vertical scroll */
 .projects-list{display:flex;flex-direction:column;gap:1.8rem;}
 .proj-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2.2rem;cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
 .proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .25s;}
 .proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--glow);}
 .proj-card:hover::before{opacity:1;}
-
 .proj-card.p1::before{background:linear-gradient(90deg,var(--accent),var(--accent2));}
 .proj-card.p1:hover{border-color:var(--accent);}
 .proj-card.p2::before{background:linear-gradient(90deg,var(--accent3),var(--accent));}
@@ -110,18 +62,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .proj-card.p3:hover{border-color:var(--accent2);}
 .proj-card.p4::before{background:linear-gradient(90deg,var(--accent),var(--accent3));}
 .proj-card.p4:hover{border-color:var(--accent);}
-
 .proj-inner{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;}
-.proj-num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:400;line-height:1;opacity:.08;color:var(--text);font-style:italic;flex-shrink:0;}
-.proj-name{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:.4rem;line-height:1.2;}
+.proj-num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:700;line-height:1;opacity:.06;color:var(--text);flex-shrink:0;}
+.proj-name{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.2;}
 .proj-role{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.04em;margin-bottom:1rem;text-transform:uppercase;}
 .proj-desc{font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;}
 .tag{font-size:.72rem;font-weight:500;background:var(--tag-bg);color:var(--tag-text);padding:.25rem .65rem;border-radius:5px;}
 .proj-cta{font-size:.82rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:.3rem;transition:gap .2s;}
 .proj-card:hover .proj-cta{gap:.6rem;}
-
-/* SKILLS */
 .skills-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 .skill-cat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:border-color .2s,box-shadow .2s;}
 .skill-cat:hover{border-color:var(--accent2);box-shadow:0 4px 20px var(--glow);}
@@ -129,21 +78,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .skill-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
 .pill{font-size:.8rem;font-weight:400;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.28rem .7rem;transition:border-color .2s,color .2s;}
 .pill:hover{border-color:var(--accent);color:var(--accent);}
-
-/* CONTACT */
 .contact-wrap{max-width:600px;margin:0 auto;text-align:center;padding:7rem 3rem 9rem;}
 .contact-text{font-size:.97rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:2.8rem;}
 .contact-btns{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;}
-
 footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;font-size:.78rem;color:var(--muted);font-weight:400;}
-
-/* PROJECT PAGE */
 #project-page{display:none;padding-top:60px;}
 .proj-page-wrap{max-width:780px;margin:0 auto;padding:5rem 3rem 8rem;}
 .back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.83rem;font-weight:500;color:var(--muted);cursor:pointer;margin-bottom:3rem;transition:color .2s;background:none;border:none;padding:0;font-family:'DM Sans',sans-serif;}
 .back-btn:hover{color:var(--accent);}
 .proj-page-accent{height:3px;width:48px;border-radius:2px;margin-bottom:1.8rem;}
-.proj-page-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:400;color:var(--text);margin-bottom:.6rem;line-height:1.1;}
+.proj-page-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;color:var(--text);margin-bottom:.6rem;line-height:1.1;}
 .proj-page-role{font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2.5rem;}
 .proj-page-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:3rem;}
 .proj-divider{border:none;border-top:1px solid var(--border);margin:2.5rem 0;}
@@ -152,31 +96,21 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
 .proj-highlights-list{display:flex;flex-direction:column;gap:.9rem;}
 .proj-highlight{display:flex;gap:1rem;align-items:flex-start;font-size:.93rem;font-weight:300;color:var(--muted);line-height:1.75;}
 .proj-dot{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));flex-shrink:0;margin-top:.55rem;}
-.proj-page-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:.6rem 1.1rem;transition:border-color .2s,background .2s,box-shadow .2s;margin-top:.5rem;}
-.proj-page-link:hover{border-color:var(--accent);background:var(--tag-bg);box-shadow:0 4px 16px var(--glow);}
-
-/* ANIMATIONS */
+.proj-page-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:.6rem 1.1rem;transition:border-color .2s,background .2s;margin-top:.5rem;}
+.proj-page-link:hover{border-color:var(--accent);background:var(--tag-bg);}
 .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
 .fade-up.d1{transition-delay:.1s;}
 .fade-up.d2{transition-delay:.2s;}
 .fade-up.d3{transition-delay:.3s;}
 .fade-up.d4{transition-delay:.4s;}
-
 @keyframes heroFade{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .h1{opacity:0;animation:heroFade .6s ease forwards .2s;}
 .h2{opacity:0;animation:heroFade .6s ease forwards .4s;}
 .h3{opacity:0;animation:heroFade .6s ease forwards .6s;}
 .h4{opacity:0;animation:heroFade .6s ease forwards .8s;}
 .h5{opacity:0;animation:heroFade .6s ease forwards 1s;}
-
-@media(max-width:680px){
-  .about-body{grid-template-columns:1fr;}
-  .skills-wrap{grid-template-columns:1fr 1fr;}
-  .nav-links{display:none;}
-  .proj-inner{grid-template-columns:1fr;}
-  .proj-num{display:none;}
-}
+@media(max-width:680px){.about-body{grid-template-columns:1fr;}.skills-wrap{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.proj-inner{grid-template-columns:1fr;}.proj-num{display:none;}}
 </style>
 </head>
 <body>
@@ -190,10 +124,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
       <li><a href="#skills" onclick="showMain()">Skills</a></li>
       <li><a href="#contact" onclick="showMain()">Contact</a></li>
     </ul>
-    <div class="toggle-wrap" id="themeToggle" role="button" aria-label="Toggle theme">
-      <span class="toggle-icon moon" style="font-size:15px;filter:grayscale(1) brightness(1.8);">🌙</span>
-      <span class="toggle-icon sun" style="font-size:15px;filter:grayscale(1) brightness(1.8);">☀️</span>
-    </div>
+    <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
   </div>
 </nav>
 
@@ -202,10 +133,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
   <section id="home">
     <div class="hero-orb orb1"></div>
     <div class="hero-orb orb2"></div>
-    <h1 class="hero-name h1">
-      <span>Anne</span>
-      <em>Chevalier</em>
-    </h1>
+    <h1 class="hero-name h1"><span>Anne</span><em>Chevalier</em></h1>
     <p class="hero-sub h2">Security-focused IT student with a strong interest in <strong>automated testing</strong> and <strong>vulnerability detection</strong>.</p>
     <div class="hero-btns h3">
       <a href="#projects" class="btn btn-solid" onclick="showMain()">View Projects</a>
@@ -219,12 +147,12 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
   <section id="about" style="border-top:1px solid var(--border);">
     <div class="section-wrap">
       <p class="section-label fade-up">About</p>
-      <h2 class="section-heading fade-up d1">A little about me</h2>
+      <h2 class="section-heading fade-up d1">A Little About Me</h2>
       <div class="about-body">
         <div class="about-text fade-up d2">
-          <p>I'm finishing up my senior year at <strong>Southeastern Louisiana University</strong> with a B.S. in Information Technology, graduating May 2026.</p>
+          <p>I am finishing up my senior year at <strong>Southeastern Louisiana University</strong> with a B.S. in Information Technology, graduating May 2026.</p>
           <p>I got into security through my capstone project, where I owned the entire QA and security testing layer — writing test suites that catch <strong>SQL injection, XSS, and JWT token tampering</strong> before they become real problems.</p>
-          <p>Outside of security testing, I've built computer vision systems on <strong>Raspberry Pi</strong>, AI-powered web apps with Hugging Face models, and cross-platform mobile apps with React Native.</p>
+          <p>Outside of security testing, I have built computer vision systems on <strong>Raspberry Pi</strong>, AI-powered web apps with Hugging Face models, and cross-platform mobile apps with React Native.</p>
           <p>Looking for entry-level roles in <strong>cybersecurity, QA engineering, or IT</strong> where I can keep building — and keep breaking things on purpose.</p>
         </div>
         <div class="about-cards fade-up d3">
@@ -240,7 +168,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
       <p class="section-label fade-up">Projects</p>
       <h2 class="section-heading fade-up d1">Things I've Built</h2>
       <div class="projects-list">
-
         <div class="proj-card p1 fade-up d2" onclick="showProject('nerdvana')">
           <div class="proj-inner">
             <div>
@@ -253,7 +180,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
             <div class="proj-num">01</div>
           </div>
         </div>
-
         <div class="proj-card p2 fade-up d2" onclick="showProject('chessgpt')">
           <div class="proj-inner">
             <div>
@@ -266,7 +192,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
             <div class="proj-num">02</div>
           </div>
         </div>
-
         <div class="proj-card p3 fade-up d2" onclick="showProject('grammarlytics')">
           <div class="proj-inner">
             <div>
@@ -279,7 +204,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
             <div class="proj-num">03</div>
           </div>
         </div>
-
         <div class="proj-card p4 fade-up d2" onclick="showProject('lionsden')">
           <div class="proj-inner">
             <div>
@@ -292,7 +216,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
             <div class="proj-num">04</div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -316,9 +239,9 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
     <div class="contact-wrap">
       <p class="section-label fade-up" style="text-align:center;">Contact</p>
       <h2 class="section-heading fade-up d1" style="text-align:center;">Let's Connect</h2>
-      <p class="contact-text fade-up d2">Graduating May 2026 and actively looking for entry-level roles in cybersecurity, QA engineering, or IT. If you're hiring or just want to talk tech, I'd love to hear from you.</p>
+      <p class="contact-text fade-up d2">Graduating May 2026 and actively looking for entry-level roles in cybersecurity, QA engineering, or IT. If you are hiring or just want to talk tech, I would love to hear from you.</p>
       <div class="contact-btns fade-up d3">
-        <a href="/cdn-cgi/l/email-protection#afceccc7cad9d99d9eefc8c2cec6c381ccc0c2" class="btn btn-solid"><span class="__cf_email__" data-cfemail="d3b2b0bbb6a5a5e1e293b4beb2babffdb0bcbe">[email&#160;protected]</span></a>
+        <a href="mailto:achevv21@gmail.com" class="btn btn-solid">achevv21@gmail.com</a>
         <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-ghost">LinkedIn</a>
         <a href="https://github.com/achev2" target="_blank" class="btn btn-ghost">GitHub</a>
         <a href="Anne_Chevalier_Resume.pdf" target="_blank" class="btn btn-ghost">Resume</a>
@@ -329,7 +252,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
   <footer>Built by Anne Chevalier · 2026</footer>
 </div>
 
-<!-- PROJECT PAGE -->
 <div id="project-page">
   <div class="proj-page-wrap">
     <button class="back-btn" onclick="showMain()">← Back to Projects</button>
@@ -337,87 +259,21 @@ footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const projects = {
-  nerdvana: {
-    name:'NERDVANA', role:'QA & Security Engineer · Senior Capstone, Southeastern Louisiana University · Spring 2026',
-    accent:'linear-gradient(135deg,var(--accent),var(--accent2))',
-    tags:['pytest','Vitest','Playwright','Azure','GitHub Actions','Docker','FastAPI','Next.js','PostgreSQL'],
-    desc:['NERDVANA is a field service technician web application built for a real enterprise client — a marine engine and generator company based in Louisiana. Their technicians go on-site to service equipment at marinas, on vessels, and in industrial settings.',
-      'The problem we solved: technicians had no direct way to interact with the company\'s ERP system from the field. Everything went through the office. Job reports were written manually after the fact, leading to incomplete documentation.',
-      'Our solution gives technicians a single web interface to view assigned jobs pulled live from the ERP, record voice memos transcribed by Azure Whisper and summarized by GPT-4o-mini, track time, manage parts, and submit reports in real time.',
-      'As QA & Security Engineer, I owned the entire testing and CI/CD quality layer for the project.'],
-    highlights:['Wrote automated tests across the full stack using pytest (Python backend), Vitest (React frontend), and Playwright (end-to-end browser testing)',
-      'Built a dedicated security test suite covering SQL injection prevention, XSS sanitization, JWT token tampering detection, and password hashing verification',
-      'Enforced required CI status checks on every pull request — tests, builds, linting, and dependency scanning — with branch protection on main and dev branches',
-      'Validated the complete technician workflow end-to-end on a live Azure deployment connected to the client\'s real ERP system'],
-    link:null, linkNote:'🔒 Private repository — built for a real enterprise client'
-  },
-  chessgpt: {
-    name:'ChessGPT', role:'Solo Project · Computer Vision + AI',
-    accent:'linear-gradient(135deg,var(--accent3),var(--accent))',
-    tags:['Python','OpenCV','Stockfish','python-chess','Raspberry Pi','Tkinter'],
-    desc:['ChessGPT is a Raspberry Pi-based computer vision system that bridges the physical and digital worlds of chess. Point a camera at a real chessboard and the system detects piece positions in real time, then suggests the best move using the Stockfish chess engine.',
-      'Chess pieces are marked with color-coded stickers. OpenCV captures frames from the Pi camera, identifies the 8x8 board grid, and analyzes each square for colored markers to determine piece type and player.',
-      'The detected board state is passed to Stockfish via python-chess, and AI-generated move suggestions appear in a custom Tkinter desktop GUI.'],
-    highlights:['Used OpenCV contour detection and HSV color analysis to identify and track color-coded chess pieces on a physical board via Raspberry Pi camera',
-      'Passed detected board state to the Stockfish chess engine in real time and displayed AI-generated move suggestions in a live desktop GUI',
-      'Designed the full pipeline from image capture to board state tracking to engine output and GUI display',
-      'Built entirely in Python — sole developer from concept to working hardware demo'],
-    link:'https://github.com/achev2/chess-vision-ai', linkNote:null
-  },
-  grammarlytics: {
-    name:'Grammarlytics', role:'Full-Stack Developer · AI Integration',
-    accent:'linear-gradient(135deg,var(--accent2),var(--accent3))',
-    tags:['React','TypeScript','Python','Hugging Face','Mantine UI','REST API','C#','.NET'],
-    desc:['Grammarlytics is an AI-powered grammar assistant that helps users write with more confidence. The core feature is grammar correction with tone rewriting — users paste text, choose a tone (Neutral, Formal, Casual, Academic, or Friendly), and the AI rewrites it accordingly.',
-      'The app includes an interactive grammar practice system where users select a topic, get an AI-generated sentence to correct, and receive instant feedback. Practice attempts are saved to a personal history tracker with delete functionality.',
-      'A built-in grammar chatbot acts as a conversational tutor. Corrected text can be exported to PDF or Word directly from the browser.'],
-    highlights:['Built a full-stack AI writing tool with grammar correction, tone rewriting across five styles, and export to PDF and Word',
-      'Developed an interactive grammar practice system with AI-generated prompts, topic selection, answer checking, and personal history tracker',
-      'Integrated Hugging Face NLP models served via a Python/Google Colab inference backend, connected to the React frontend through a REST API',
-      'Built user authentication, profile management, and practice history with full CRUD operations'],
-    link:null, linkNote:'🔒 Academic project repository'
-  },
-  lionsden: {
-    name:'Lions Den Cinemas', role:'Full-Stack Contributor · Web & Mobile',
-    accent:'linear-gradient(135deg,var(--accent),var(--accent3))',
-    tags:['React Native','Node.js','Express','PostgreSQL','JWT','REST API','JavaScript'],
-    desc:['Lions Den Cinemas is a full-stack cinema management system built as a team project. The platform includes a cross-platform mobile app (iOS & Android) built with React Native, a responsive web interface, and a comprehensive admin dashboard for cinema staff.',
-      'Customers can browse showtimes, view movie details, purchase tickets and concessions, and select seats on an interactive seat map. The admin panel lets staff manage movies, update showtimes, and monitor inventory in real time.',
-      'I contributed across both frontend and backend with commits spanning mobile UI, backend controllers, and Azure infrastructure setup.'],
-    highlights:['Built seat selection UI including grid layout, toggle styles, seat reserve submission, and reservation screens',
-      'Developed backend controllers for tickets, showtimes, and movies including seeded movie data',
-      'Worked on theater listing pages, navigation routing fixes, and showtime modal components',
-      'Set up Azure Functions infrastructure and contributed to the working mobile branch'],
-    link:null, linkNote:'🔒 Team project — private repository'
-  }
+<script>
+var projects = {
+  nerdvana:{name:"NERDVANA",role:"QA & Security Engineer · Senior Capstone, Southeastern Louisiana University · Spring 2026",accent:"linear-gradient(135deg,#6c8dd4,#9b87d4)",tags:["pytest","Vitest","Playwright","Azure","GitHub Actions","Docker","FastAPI","Next.js","PostgreSQL"],desc:["NERDVANA is a field service technician web application built for a real enterprise client — a marine engine and generator company based in Louisiana. Their technicians go on-site to service equipment at marinas, on vessels, and in industrial settings.","The problem we solved: technicians had no direct way to interact with the company's ERP system from the field. Everything went through the office. Job reports were written manually after the fact, leading to incomplete documentation.","Our solution gives technicians a single web interface to view assigned jobs pulled live from the ERP, record voice memos transcribed by Azure Whisper and summarized by GPT-4o-mini, track time, manage parts, and submit reports in real time.","As QA & Security Engineer, I owned the entire testing and CI/CD quality layer for the project."],highlights:["Wrote automated tests across the full stack using pytest (Python backend), Vitest (React frontend), and Playwright (end-to-end browser testing)","Built a dedicated security test suite covering SQL injection prevention, XSS sanitization, JWT token tampering detection, and password hashing verification","Enforced required CI status checks on every pull request — tests, builds, linting, and dependency scanning — with branch protection on main and dev branches","Validated the complete technician workflow end-to-end on a live Azure deployment connected to the client's real ERP system"],link:null,linkNote:"Private repository — built for a real enterprise client"},
+  chessgpt:{name:"ChessGPT",role:"Solo Project · Computer Vision + AI",accent:"linear-gradient(135deg,#5bc4d4,#6c8dd4)",tags:["Python","OpenCV","Stockfish","python-chess","Raspberry Pi","Tkinter"],desc:["ChessGPT is a Raspberry Pi-based computer vision system that bridges the physical and digital worlds of chess. Point a camera at a real chessboard and the system detects piece positions in real time, then suggests the best move using the Stockfish chess engine.","Chess pieces are marked with color-coded stickers. OpenCV captures frames from the Pi camera, identifies the 8x8 board grid, and analyzes each square for colored markers to determine piece type and player.","The detected board state is passed to Stockfish via python-chess, and AI-generated move suggestions appear in a custom Tkinter desktop GUI."],highlights:["Used OpenCV contour detection and HSV color analysis to identify and track color-coded chess pieces on a physical board via Raspberry Pi camera","Passed detected board state to the Stockfish chess engine in real time and displayed AI-generated move suggestions in a live desktop GUI","Designed the full pipeline from image capture to board state tracking to engine output and GUI display","Built entirely in Python — sole developer from concept to working hardware demo"],link:"https://github.com/achev2/chess-vision-ai",linkNote:null},
+  grammarlytics:{name:"Grammarlytics",role:"Full-Stack Developer · AI Integration",accent:"linear-gradient(135deg,#9b87d4,#5bc4d4)",tags:["React","TypeScript","Python","Hugging Face","Mantine UI","REST API","C#",".NET"],desc:["Grammarlytics is an AI-powered grammar assistant that helps users write with more confidence. The core feature is grammar correction with tone rewriting — users paste text, choose a tone (Neutral, Formal, Casual, Academic, or Friendly), and the AI rewrites it accordingly.","The app includes an interactive grammar practice system where users select a topic, get an AI-generated sentence to correct, and receive instant feedback. Practice attempts are saved to a personal history tracker with delete functionality.","A built-in grammar chatbot acts as a conversational tutor. Corrected text can be exported to PDF or Word directly from the browser."],highlights:["Built a full-stack AI writing tool with grammar correction, tone rewriting across five styles, and export to PDF and Word","Developed an interactive grammar practice system with AI-generated prompts, topic selection, answer checking, and personal history tracker","Integrated Hugging Face NLP models served via a Python/Google Colab inference backend, connected to the React frontend through a REST API","Built user authentication, profile management, and practice history with full CRUD operations"],link:null,linkNote:"Academic project repository"},
+  lionsden:{name:"Lions Den Cinemas",role:"Full-Stack Contributor · Web & Mobile",accent:"linear-gradient(135deg,#6c8dd4,#5bc4d4)",tags:["React Native","Node.js","Express","PostgreSQL","JWT","REST API","JavaScript"],desc:["Lions Den Cinemas is a full-stack cinema management system built as a team project. The platform includes a cross-platform mobile app (iOS & Android) built with React Native, a responsive web interface, and a comprehensive admin dashboard for cinema staff.","Customers can browse showtimes, view movie details, purchase tickets and concessions, and select seats on an interactive seat map. The admin panel lets staff manage movies, update showtimes, and monitor inventory in real time.","I contributed across both frontend and backend with commits spanning mobile UI, backend controllers, and Azure infrastructure setup."],highlights:["Built seat selection UI including grid layout, toggle styles, seat reserve submission, and reservation screens","Developed backend controllers for tickets, showtimes, and movies including seeded movie data","Worked on theater listing pages, navigation routing fixes, and showtime modal components","Set up Azure Functions infrastructure and contributed to the working mobile branch"],link:null,linkNote:"Team project — private repository"}
 };
 
 function showProject(id) {
-  const p = projects[id];
-  const tags = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-  const desc = p.desc.map(d=>`<p class="proj-page-desc">${d}</p>`).join('');
-  const hl = p.highlights.map(h=>`<div class="proj-highlight"><div class="proj-dot"></div><span>${h}</span></div>`).join('');
-  const linkHtml = p.link
-    ? `<a href="${p.link}" target="_blank" class="proj-page-link">↗ View on GitHub</a>`
-    : p.linkNote ? `<p style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">${p.linkNote}</p>` : '';
-
-  document.getElementById('proj-content').innerHTML = `
-    <div class="proj-page-accent" style="background:${p.accent};"></div>
-    <h1 class="proj-page-name">${p.name}</h1>
-    <p class="proj-page-role">${p.role}</p>
-    <div class="proj-page-tags">${tags}</div>
-    <hr class="proj-divider">
-    <p class="proj-section-title">Overview</p>
-    ${desc}
-    <hr class="proj-divider">
-    <p class="proj-section-title">What I Did</p>
-    <div class="proj-highlights-list">${hl}</div>
-    <hr class="proj-divider">
-    ${linkHtml}
-  `;
-
+  var p = projects[id];
+  var tags = p.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  var desc = p.desc.map(function(d){return '<p class="proj-page-desc">'+d+'</p>';}).join('');
+  var hl = p.highlights.map(function(h){return '<div class="proj-highlight"><div class="proj-dot"></div><span>'+h+'</span></div>';}).join('');
+  var linkHtml = p.link ? '<a href="'+p.link+'" target="_blank" class="proj-page-link">View on GitHub →</a>' : (p.linkNote ? '<p style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">'+p.linkNote+'</p>' : '');
+  document.getElementById('proj-content').innerHTML = '<div class="proj-page-accent" style="background:'+p.accent+';"></div><h1 class="proj-page-name">'+p.name+'</h1><p class="proj-page-role">'+p.role+'</p><div class="proj-page-tags">'+tags+'</div><hr class="proj-divider"><p class="proj-section-title">Overview</p>'+desc+'<hr class="proj-divider"><p class="proj-section-title">What I Did</p><div class="proj-highlights-list">'+hl+'</div><hr class="proj-divider">'+linkHtml;
   document.getElementById('main-site').classList.remove('active');
   document.getElementById('project-page').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
@@ -429,12 +285,19 @@ function showMain() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-const html = document.documentElement;
-html.setAttribute('data-theme','dark');
-document.getElementById('themeToggle').addEventListener('click', () => {
-  const next = html.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
+document.documentElement.setAttribute('data-theme','dark');
+var isDark = true;
+var btn = document.getElementById('themeToggle');
+btn.addEventListener('click', function() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  btn.textContent = isDark ? '🌙' : '☀️';
 });
 
-const observer = new
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
