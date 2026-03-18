@@ -1,774 +1,379 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anne Chevalier — IT Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root[data-theme="dark"] {
-      --bg: #0e0e11;
-      --bg2: #16161a;
-      --bg3: #1e1e24;
-      --border: #2a2a35;
-      --text: #e8e8f0;
-      --text-muted: #7a7a92;
-      --accent: #7c6af7;
-      --accent2: #f7c06a;
-      --tag-bg: #1e1e2e;
-      --tag-text: #a89cf7;
-      --card-bg: #16161a;
-      --nav-bg: rgba(14,14,17,0.85);
-    }
-    :root[data-theme="light"] {
-      --bg: #f5f4f0;
-      --bg2: #eeecea;
-      --bg3: #e5e3de;
-      --border: #d5d2cb;
-      --text: #1a1a22;
-      --text-muted: #7a7870;
-      --accent: #5a46e8;
-      --accent2: #d4940a;
-      --tag-bg: #e8e5ff;
-      --tag-text: #5a46e8;
-      --card-bg: #eeecea;
-      --nav-bg: rgba(245,244,240,0.85);
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anne Chevalier</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --slate: #8fa3bb;
+  --lavender: #b4aed4;
+}
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #161b26;
+  --surface2: #1c2232;
+  --border: rgba(255,255,255,0.07);
+  --text: #e2e8f0;
+  --muted: #6b7a96;
+  --accent: #8fa3bb;
+  --accent2: #b4aed4;
+  --tag-bg: rgba(143,163,187,0.1);
+  --tag-text: #8fa3bb;
+}
+[data-theme="light"] {
+  --bg: #f8f9fc;
+  --surface: #ffffff;
+  --surface2: #f0f2f8;
+  --border: rgba(0,0,0,0.07);
+  --text: #1a1f2e;
+  --muted: #6b7a96;
+  --accent: #4a6fa5;
+  --accent2: #7b6fa8;
+  --tag-bg: rgba(74,111,165,0.08);
+  --tag-text: #4a6fa5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .35s,color .35s;min-height:100vh;}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);transition:background .35s,border-color .35s;}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--text);text-decoration:none;cursor:pointer;}
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{font-size:.82rem;font-weight:400;color:var(--muted);text-decoration:none;letter-spacing:.02em;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.toggle-btn{width:36px;height:20px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;position:relative;transition:background .3s;flex-shrink:0;}
+.toggle-btn::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--accent);transition:transform .3s ease;}
+[data-theme="light"] .toggle-btn::after{transform:translateX(16px);}
 
-    html { scroll-behavior: smooth; }
+.page{display:none;}
+.page.active{display:block;}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s ease, color 0.3s ease;
-      overflow-x: hidden;
-    }
+#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 2.5rem 4rem;max-width:860px;margin:0 auto;position:relative;}
+.hero-kicker{font-size:.8rem;font-weight:400;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp .5s ease forwards .2s;}
+.hero-name{font-family:'Instrument Serif',serif;font-size:clamp(3.8rem,9vw,7rem);line-height:.95;color:var(--text);margin-bottom:1.6rem;font-weight:400;opacity:0;animation:fadeUp .5s ease forwards .4s;}
+.hero-name em{color:var(--accent2);font-style:italic;}
+.hero-sub{font-size:1rem;font-weight:300;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fadeUp .5s ease forwards .6s;}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;animation:fadeUp .5s ease forwards .8s;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border-radius:6px;font-size:.82rem;font-weight:400;text-decoration:none;transition:all .2s;cursor:pointer;border:none;letter-spacing:.01em;font-family:'Inter',sans-serif;}
+.btn-solid{background:var(--accent);color:var(--bg);}
+.btn-solid:hover{opacity:.85;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text);border-color:var(--accent);transform:translateY(-1px);}
+.scroll-line{position:absolute;bottom:2.5rem;left:2.5rem;display:flex;align-items:center;gap:.8rem;font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;opacity:0;animation:fadeUp .5s ease forwards 1s;}
+.scroll-line::before{content:'';display:block;width:32px;height:1px;background:var(--muted);}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.3s;
-    }
-    .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      color: var(--accent);
-      letter-spacing: 0.02em;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
+.section-wrap{max-width:860px;margin:0 auto;padding:7rem 2.5rem;}
+.section-label{font-size:.72rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;font-weight:400;}
+.section-heading{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--text);margin-bottom:3.5rem;line-height:1.15;}
 
-    .theme-toggle {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      width: 52px;
-      height: 28px;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.3s;
-      flex-shrink: 0;
-    }
-    .theme-toggle::after {
-      content: '';
-      position: absolute;
-      top: 3px; left: 3px;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--accent);
-      transition: transform 0.3s ease;
-    }
-    [data-theme="light"] .theme-toggle::after { transform: translateX(24px); }
-    .theme-icon {
-      position: absolute;
-      font-size: 11px;
-      top: 50%; transform: translateY(-50%);
-      pointer-events: none;
-    }
-    .theme-icon.moon { left: 5px; }
-    .theme-icon.sun  { right: 5px; }
+.about-body{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:start;}
+.about-text p{font-size:.97rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:1.2rem;}
+.about-text p strong{color:var(--text);font-weight:500;}
+.about-cards{display:flex;flex-direction:column;gap:1rem;}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;transition:border-color .2s;}
+.info-card:hover{border-color:var(--accent);}
+.info-num{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--accent);line-height:1;margin-bottom:.25rem;}
+.info-label{font-size:.78rem;color:var(--muted);font-weight:300;}
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 2rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.2s;
-    }
-    .hero-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-      line-height: 1.0;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.35s;
-    }
-    .hero-name span { color: var(--accent); font-style: italic; }
-    .hero-title {
-      font-family: 'DM Mono', monospace;
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.5s;
-    }
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 540px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.65s;
-    }
-    .hero-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.8s;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.4rem;
-      border-radius: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.8rem;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;gap:.7rem;}
+.proj-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.proj-card.wide{grid-column:1/-1;}
+.proj-accent{width:24px;height:2px;border-radius:2px;margin-bottom:.3rem;}
+.proj-name{font-family:'Instrument Serif',serif;font-size:1.35rem;font-weight:400;color:var(--text);line-height:1.2;}
+.proj-role{font-size:.75rem;color:var(--accent);font-weight:400;letter-spacing:.03em;}
+.proj-desc{font-size:.88rem;color:var(--muted);line-height:1.75;font-weight:300;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem;}
+.tag{font-size:.7rem;background:var(--tag-bg);color:var(--tag-text);padding:.22rem .6rem;border-radius:4px;font-weight:400;}
+.proj-cta{font-size:.78rem;color:var(--muted);margin-top:auto;padding-top:.5rem;display:flex;align-items:center;gap:.3rem;transition:color .2s;}
+.proj-card:hover .proj-cta{color:var(--accent);}
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 0; right: 0;
-      display: flex;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 1.2s;
-    }
-    .scroll-hint span {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .scroll-arrow {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 1.8s ease-in-out infinite;
-    }
+.skills-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.skill-cat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.3rem;transition:border-color .2s;}
+.skill-cat:hover{border-color:var(--accent);}
+.skill-cat-title{font-size:.72rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:400;}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
+.pill{font-size:.78rem;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.25rem .65rem;font-weight:300;transition:border-color .2s,color .2s;}
+.pill:hover{border-color:var(--accent);color:var(--accent);}
 
-    /* ── SECTIONS ── */
-    section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--text);
-      margin-bottom: 3rem;
-      line-height: 1.15;
-    }
+.contact-wrap{max-width:560px;margin:0 auto;text-align:center;padding:7rem 2.5rem 9rem;}
+.contact-text{font-size:.95rem;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:2.5rem;}
+.contact-btns{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;}
 
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .about-text p {
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-      font-size: 1rem;
-    }
-    .about-text p strong { color: var(--text); font-weight: 600; }
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      transition: border-color 0.2s;
-    }
-    .stat-card:hover { border-color: var(--accent); }
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: 'DM Mono', monospace;
-    }
+footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;text-align:center;font-size:.75rem;color:var(--muted);font-weight:300;}
 
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      transition: border-color 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .project-card:hover::before { opacity: 1; }
-    .project-card.featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-    .project-card.featured .project-content { display: flex; flex-direction: column; gap: 0.8rem; }
-    .project-badge {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      background: transparent;
-      border: 1px solid var(--accent2);
-      border-radius: 4px;
-      padding: 0.2rem 0.6rem;
-      width: fit-content;
-    }
-    .project-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      color: var(--text);
-      line-height: 1.2;
-    }
-    .project-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-    .project-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      letter-spacing: 0.03em;
-    }
-    .project-links {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: auto;
-      padding-top: 0.5rem;
-    }
-    .project-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: color 0.2s;
-    }
-    .project-link:hover { color: var(--accent); }
-    .project-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .highlight-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .highlight-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      margin-top: 0.45rem;
-    }
+#project-page{display:none;padding-top:56px;}
+.proj-page-wrap{max-width:760px;margin:0 auto;padding:5rem 2.5rem 7rem;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--muted);cursor:pointer;margin-bottom:3rem;transition:color .2s;background:none;border:none;padding:0;font-family:'Inter',sans-serif;}
+.back-btn:hover{color:var(--accent);}
+.proj-page-name{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,5vw,3.5rem);font-weight:400;color:var(--text);margin-bottom:.5rem;line-height:1.1;}
+.proj-page-role{font-size:.82rem;color:var(--accent);margin-bottom:2.5rem;font-weight:400;letter-spacing:.03em;}
+.proj-page-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:3rem;}
+.proj-divider{border:none;border-top:1px solid var(--border);margin:2.5rem 0;}
+.proj-section-title{font-size:.72rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem;font-weight:400;}
+.proj-page-desc{font-size:.97rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:1.2rem;}
+.proj-highlights-list{display:flex;flex-direction:column;gap:.8rem;}
+.proj-highlight{display:flex;gap:.9rem;align-items:flex-start;font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.7;}
+.proj-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.55rem;}
+.proj-page-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.83rem;color:var(--accent);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:.55rem 1rem;transition:border-color .2s,background .2s;font-weight:400;margin-top:.5rem;}
+.proj-page-link:hover{border-color:var(--accent);background:var(--tag-bg);}
 
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-    }
-    .skill-group {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
-      transition: border-color 0.2s;
-    }
-    .skill-group:hover { border-color: var(--accent); }
-    .skill-group-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .skill-pill {
-      font-size: 0.8rem;
-      color: var(--text);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.3rem 0.7rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.fade-up.d1{transition-delay:.1s;}
+.fade-up.d2{transition-delay:.2s;}
+.fade-up.d3{transition-delay:.3s;}
+.fade-up.d4{transition-delay:.4s;}
 
-    /* ── CONTACT ── */
-    #contact {
-      text-align: center;
-      padding: 6rem 2rem 8rem;
-      max-width: 600px;
-    }
-    .contact-desc {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── DIVIDER ── */
-    .section-divider {
-      max-width: 900px;
-      margin: 0 auto;
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; }
-      50%       { opacity: 1; }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 680px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-    }
-  </style>
+@media(max-width:640px){
+  .about-body{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .proj-card.wide{grid-column:1;}
+  .skills-wrap{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <span class="nav-logo">Anne Chevalier</span>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span class="theme-icon moon">🌙</span>
-    <span class="theme-icon sun">☀️</span>
-  </button>
+  <span class="nav-logo" onclick="showMain()">Anne Chevalier</span>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" onclick="showMain()">about</a></li>
+      <li><a href="#projects" onclick="showMain()">projects</a></li>
+      <li><a href="#skills" onclick="showMain()">skills</a></li>
+      <li><a href="#contact" onclick="showMain()">contact</a></li>
+    </ul>
+    <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme"></button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="hero-eyebrow">👋 Hey, I'm</p>
-  <h1 class="hero-name">Anne<br><span>Chevalier</span></h1>
-  <p class="hero-title">// Security-Focused IT Graduate · QA Engineer · Full-Stack Developer</p>
-  <p class="hero-bio">
-    Southeastern Louisiana University, graduating May 2026. I build things that work —
-    and then I try to break them. Focused on security testing, automated QA, and full-stack development.
-  </p>
-  <div class="hero-links">
-    <a href="#projects" class="btn btn-primary">View My Work</a>
-    <a href="https://github.com/achev2" target="_blank" class="btn btn-outline">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      GitHub
-    </a>
-    <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-outline">LinkedIn</a>
-    <a href="Anne_Chevalier_Resume.pdf" target="_blank" class="btn btn-outline">Resume</a>
-  </div>
-  <div class="scroll-hint">
-    <span><div class="scroll-arrow"></div>scroll</span>
-  </div>
-</section>
+<div id="main-site" class="page active">
 
-<hr class="section-divider">
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">01 / about</p>
-  <h2 class="section-title">A little about me</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm an IT student at Southeastern Louisiana University finishing up my senior year, with a focus on <strong>cybersecurity, QA engineering, and full-stack development</strong>.</p>
-      <p>I got into security through my capstone project, where I owned the entire QA and security testing layer — writing test suites that catch SQL injection, XSS, and token tampering before they become problems.</p>
-      <p>Outside of security, I've built everything from <strong>computer vision systems on Raspberry Pi</strong> to full-stack AI web apps. I like projects that live at the intersection of software and real-world problems.</p>
-      <p>Currently looking for entry-level roles in <strong>cybersecurity, QA engineering, or IT</strong> where I can keep building and keep breaking things (on purpose).</p>
+  <section id="home">
+    <p class="hero-kicker">Based in Louisiana · Available May 2026</p>
+    <h1 class="hero-name">Anne<br><em>Chevalier</em></h1>
+    <p class="hero-sub">Security-focused IT graduate. I build full-stack applications and break them with automated security testing.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-solid">View Projects</a>
+      <a href="https://github.com/achev2" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="Anne_Chevalier_Resume.pdf" target="_blank" class="btn btn-ghost">Resume</a>
     </div>
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">3.4</div>
-        <div class="stat-label">GPA · B.S. Information Technology</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">4</div>
-        <div class="stat-label">Projects shipped across web, mobile & hardware</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">220+</div>
-        <div class="stat-label">Automated tests written for enterprise capstone</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">May '26</div>
-        <div class="stat-label">Expected graduation · Available for full-time roles</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="scroll-line">Scroll to explore</div>
+  </section>
 
-<hr class="section-divider">
-
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label">02 / projects</p>
-  <h2 class="section-title">Things I've built</h2>
-  <div class="projects-grid">
-
-    <!-- NERDVANA - featured -->
-    <div class="project-card featured">
-      <div class="project-content">
-        <span class="project-badge">Senior Capstone · In Progress</span>
-        <h3 class="project-name">NERDVANA</h3>
-        <p class="project-role">QA & Security Engineer</p>
-        <p class="project-desc">A field service technician web app built for a real enterprise client — a marine engine company in Louisiana. Technicians log in, see jobs pulled live from an ERP system, record voice memos that get transcribed by AI, and submit reports automatically.</p>
-        <div class="project-tags">
-          <span class="tag">pytest</span>
-          <span class="tag">Vitest</span>
-          <span class="tag">Playwright</span>
-          <span class="tag">Azure</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Docker</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Next.js</span>
+  <section id="about" style="border-top:1px solid var(--border);">
+    <div class="section-wrap">
+      <p class="section-label fade-up">About</p>
+      <h2 class="section-heading fade-up d1">A little about me</h2>
+      <div class="about-body">
+        <div class="about-text fade-up d2">
+          <p>I'm finishing up my senior year at <strong>Southeastern Louisiana University</strong> with a B.S. in Information Technology, graduating May 2026.</p>
+          <p>I got into security through my capstone project, where I owned the entire QA and security testing layer — writing test suites that catch <strong>SQL injection, XSS, and JWT token tampering</strong> before they become real problems.</p>
+          <p>Outside of security testing, I've built computer vision systems on <strong>Raspberry Pi</strong>, AI-powered web apps with Hugging Face models, and cross-platform mobile apps with React Native.</p>
+          <p>Looking for entry-level roles in <strong>cybersecurity, QA engineering, or IT</strong> where I can keep building — and keep breaking things on purpose.</p>
         </div>
-        <div class="project-links">
-          <span class="project-link">🔒 Private repo · Enterprise client</span>
+        <div class="about-cards fade-up d3">
+          <div class="info-card"><div class="info-num">3.4</div><div class="info-label">GPA · B.S. Information Technology</div></div>
+          <div class="info-card"><div class="info-num">4</div><div class="info-label">Projects across web, mobile & hardware</div></div>
+          <div class="info-card"><div class="info-num">220+</div><div class="info-label">Automated tests written for enterprise capstone</div></div>
+          <div class="info-card"><div class="info-num">May '26</div><div class="info-label">Graduation · Available for full-time roles</div></div>
         </div>
       </div>
-      <div class="project-highlights">
-        <div class="highlight-item"><div class="highlight-dot"></div>Wrote automated tests across the full stack using pytest, Vitest, and Playwright</div>
-        <div class="highlight-item"><div class="highlight-dot"></div>Built a security test suite covering SQL injection, XSS, JWT token tampering, and password hashing</div>
-        <div class="highlight-item"><div class="highlight-dot"></div>Enforced CI status checks on every PR — tests, builds, linting, dependency scanning</div>
-        <div class="highlight-item"><div class="highlight-dot"></div>Validated full technician workflow on a live Azure deployment connected to a real ERP system</div>
+    </div>
+  </section>
+
+  <section id="projects" style="border-top:1px solid var(--border);">
+    <div class="section-wrap">
+      <p class="section-label fade-up">Projects</p>
+      <h2 class="section-heading fade-up d1">Things I've built</h2>
+      <div class="projects-grid">
+        <div class="proj-card wide fade-up d2" onclick="showProject('nerdvana')">
+          <div class="proj-accent" style="background:linear-gradient(90deg,var(--accent),var(--accent2))"></div>
+          <h3 class="proj-name">NERDVANA</h3>
+          <p class="proj-role">QA & Security Engineer · Senior Capstone</p>
+          <p class="proj-desc">A field service technician web app built for a real enterprise client. Technicians view live jobs from an ERP, record voice memos transcribed by AI, and submit reports. I owned the entire QA and security testing layer.</p>
+          <div class="proj-tags"><span class="tag">pytest</span><span class="tag">Vitest</span><span class="tag">Playwright</span><span class="tag">Azure</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">FastAPI</span><span class="tag">Next.js</span></div>
+          <p class="proj-cta">View project →</p>
+        </div>
+        <div class="proj-card fade-up d2" onclick="showProject('chessgpt')">
+          <div class="proj-accent" style="background:var(--accent)"></div>
+          <h3 class="proj-name">ChessGPT</h3>
+          <p class="proj-role">Solo Project · Hardware + AI</p>
+          <p class="proj-desc">A Raspberry Pi computer vision system that detects color-coded chess pieces on a physical board in real time and suggests AI-powered moves via Stockfish.</p>
+          <div class="proj-tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Stockfish</span><span class="tag">Raspberry Pi</span><span class="tag">Tkinter</span></div>
+          <p class="proj-cta">View project →</p>
+        </div>
+        <div class="proj-card fade-up d3" onclick="showProject('grammarlytics')">
+          <div class="proj-accent" style="background:var(--accent2)"></div>
+          <h3 class="proj-name">Grammarlytics</h3>
+          <p class="proj-role">Full-Stack Developer · AI Integration</p>
+          <p class="proj-desc">An AI grammar assistant with tone rewriting, interactive practice problems, a grammar chatbot, and export to PDF and Word. Powered by Hugging Face NLP models.</p>
+          <div class="proj-tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">Hugging Face</span><span class="tag">Mantine UI</span></div>
+          <p class="proj-cta">View project →</p>
+        </div>
+        <div class="proj-card fade-up d3" onclick="showProject('lionsden')">
+          <div class="proj-accent" style="background:var(--slate)"></div>
+          <h3 class="proj-name">Lions Den Cinemas</h3>
+          <p class="proj-role">Full-Stack Contributor · Web & Mobile</p>
+          <p class="proj-desc">A cinema management system with a cross-platform mobile app, web interface, and admin dashboard. Built ticket and showtime controllers and seat selection UI.</p>
+          <div class="proj-tags"><span class="tag">React Native</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span></div>
+          <p class="proj-cta">View project →</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- ChessGPT -->
-    <div class="project-card">
-      <h3 class="project-name">ChessGPT</h3>
-      <p class="project-role">Solo Project · Hardware + AI</p>
-      <p class="project-desc">A Raspberry Pi computer vision system that detects color-coded chess pieces on a physical board in real time and displays AI-powered move suggestions via the Stockfish engine.</p>
-      <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">OpenCV</span>
-        <span class="tag">Stockfish</span>
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">Tkinter</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/achev2/chess-vision-ai" target="_blank" class="project-link">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
-        </a>
+  <section id="skills" style="border-top:1px solid var(--border);">
+    <div class="section-wrap">
+      <p class="section-label fade-up">Skills</p>
+      <h2 class="section-heading fade-up d1">What I work with</h2>
+      <div class="skills-wrap">
+        <div class="skill-cat fade-up d1"><div class="skill-cat-title">Languages</div><div class="skill-pills"><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span><span class="pill">Java</span><span class="pill">C#</span><span class="pill">C++</span><span class="pill">HTML</span><span class="pill">SQL</span></div></div>
+        <div class="skill-cat fade-up d2"><div class="skill-cat-title">Frameworks & Tools</div><div class="skill-pills"><span class="pill">React</span><span class="pill">React Native</span><span class="pill">Next.js</span><span class="pill">Node.js</span><span class="pill">FastAPI</span><span class="pill">Docker</span><span class="pill">PostgreSQL</span><span class="pill">Git</span></div></div>
+        <div class="skill-cat fade-up d3"><div class="skill-cat-title">Security & Testing</div><div class="skill-pills"><span class="pill">pytest</span><span class="pill">Vitest</span><span class="pill">Playwright</span><span class="pill">SQL Injection</span><span class="pill">XSS Testing</span><span class="pill">JWT Security</span><span class="pill">CI/CD</span></div></div>
+        <div class="skill-cat fade-up d1"><div class="skill-cat-title">Cloud & DevOps</div><div class="skill-pills"><span class="pill">Azure</span><span class="pill">GitHub Actions</span><span class="pill">ACR</span><span class="pill">App Services</span></div></div>
+        <div class="skill-cat fade-up d2"><div class="skill-cat-title">Hardware & AI</div><div class="skill-pills"><span class="pill">Raspberry Pi</span><span class="pill">OpenCV</span><span class="pill">Hugging Face</span><span class="pill">Stockfish</span><span class="pill">Azure OpenAI</span></div></div>
+        <div class="skill-cat fade-up d3"><div class="skill-cat-title">Learning</div><div class="skill-pills"><span class="pill">Network+</span><span class="pill">Security+</span><span class="pill">Pen Testing</span></div></div>
       </div>
     </div>
+  </section>
 
-    <!-- Grammarlytics -->
-    <div class="project-card">
-      <h3 class="project-name">Grammarlytics</h3>
-      <p class="project-role">Full-Stack Developer · AI Integration</p>
-      <p class="project-desc">An AI-powered grammar assistant with tone rewriting across five styles, interactive practice problems, a grammar chatbot, and export to PDF and Word.</p>
-      <div class="project-tags">
-        <span class="tag">React</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">Python</span>
-        <span class="tag">Hugging Face</span>
-        <span class="tag">Mantine UI</span>
-        <span class="tag">REST API</span>
-      </div>
-      <div class="project-links">
-        <span class="project-link">🔒 Academic project</span>
+  <section id="contact" style="border-top:1px solid var(--border);">
+    <div class="contact-wrap">
+      <p class="section-label fade-up" style="text-align:center;">Contact</p>
+      <h2 class="section-heading fade-up d1" style="text-align:center;">Let's connect</h2>
+      <p class="contact-text fade-up d2">Graduating May 2026 and actively looking for entry-level roles in cybersecurity, QA engineering, or IT. If you're hiring or just want to talk tech, I'd love to hear from you.</p>
+      <div class="contact-btns fade-up d3">
+        <a href="mailto:achevv21@gmail.com" class="btn btn-solid">achevv21@gmail.com</a>
+        <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/achev2" target="_blank" class="btn btn-ghost">GitHub</a>
       </div>
     </div>
+  </section>
 
-    <!-- Lions Den -->
-    <div class="project-card" style="grid-column: 1 / -1;">
-      <h3 class="project-name">Lions Den Cinemas</h3>
-      <p class="project-role">Full-Stack Contributor · Web & Mobile</p>
-      <p class="project-desc">A full-stack cinema management system with a cross-platform mobile app (iOS & Android), a responsive web interface, and an admin dashboard for staff. Contributed to both frontend and backend including controllers, showtimes, seat selection UI, and routing.</p>
-      <div class="project-tags">
-        <span class="tag">React Native</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">Express</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">JWT Auth</span>
-        <span class="tag">REST API</span>
-      </div>
-    </div>
+  <footer>Built by Anne Chevalier · 2026</footer>
+</div>
 
+<div id="project-page">
+  <div class="proj-page-wrap">
+    <button class="back-btn" onclick="showMain()">← Back to projects</button>
+    <div id="proj-content"></div>
   </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label">03 / skills</p>
-  <h2 class="section-title">What I work with</h2>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <div class="skill-group-title">Languages</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">JavaScript</span>
-        <span class="skill-pill">TypeScript</span>
-        <span class="skill-pill">Java</span>
-        <span class="skill-pill">C#</span>
-        <span class="skill-pill">C++</span>
-        <span class="skill-pill">HTML</span>
-        <span class="skill-pill">SQL</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Frameworks & Tools</div>
-      <div class="skill-pills">
-        <span class="skill-pill">React</span>
-        <span class="skill-pill">React Native</span>
-        <span class="skill-pill">Next.js</span>
-        <span class="skill-pill">Node.js</span>
-        <span class="skill-pill">FastAPI</span>
-        <span class="skill-pill">Docker</span>
-        <span class="skill-pill">PostgreSQL</span>
-        <span class="skill-pill">Git</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Security & Testing</div>
-      <div class="skill-pills">
-        <span class="skill-pill">pytest</span>
-        <span class="skill-pill">Vitest</span>
-        <span class="skill-pill">Playwright</span>
-        <span class="skill-pill">SQL Injection</span>
-        <span class="skill-pill">XSS Testing</span>
-        <span class="skill-pill">JWT Security</span>
-        <span class="skill-pill">CI/CD</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Cloud & DevOps</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Azure</span>
-        <span class="skill-pill">GitHub Actions</span>
-        <span class="skill-pill">Azure Container Registry</span>
-        <span class="skill-pill">App Services</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Hardware & AI</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Raspberry Pi</span>
-        <span class="skill-pill">OpenCV</span>
-        <span class="skill-pill">Hugging Face</span>
-        <span class="skill-pill">Stockfish</span>
-        <span class="skill-pill">Azure OpenAI</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Currently Learning</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Networking+</span>
-        <span class="skill-pill">Security+</span>
-        <span class="skill-pill">Penetration Testing</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- CONTACT -->
-<section id="contact" style="margin: 0 auto;">
-  <p class="section-label">04 / contact</p>
-  <h2 class="section-title">Let's connect</h2>
-  <p class="contact-desc">
-    I'm graduating May 2026 and actively looking for entry-level roles in cybersecurity, QA engineering, or IT. If you're hiring or just want to talk tech, reach out!
-  </p>
-  <div class="contact-links">
-    <a href="mailto:achevv21@gmail.com" class="btn btn-primary">achevv21@gmail.com</a>
-    <a href="https://www.linkedin.com/in/anne-chevalier-489b4b219/" target="_blank" class="btn btn-outline">LinkedIn</a>
-    <a href="https://github.com/achev2" target="_blank" class="btn btn-outline">GitHub</a>
-  </div>
-</section>
-
-<footer>
-  <p>Built by Anne Chevalier · 2026</p>
-</footer>
+</div>
 
 <script>
-  const toggle = document.getElementById('themeToggle');
-  const html = document.documentElement;
-  const saved = localStorage.getItem('theme') || 'dark';
-  html.setAttribute('data-theme', saved);
+const projects = {
+  nerdvana: {
+    name: 'NERDVANA', role: 'QA & Security Engineer · Senior Capstone, Southeastern Louisiana University · Spring 2026',
+    accent: 'linear-gradient(90deg,var(--accent),var(--accent2))',
+    tags: ['pytest','Vitest','Playwright','Azure','GitHub Actions','Docker','FastAPI','Next.js','PostgreSQL'],
+    desc: ['NERDVANA is a field service technician web application built for a real enterprise client — a marine engine and generator company based in Louisiana. Their technicians go on-site to service equipment at marinas, on vessels, and in industrial settings.',
+      'The problem: technicians had no direct way to interact with the company\'s ERP system from the field. Job reports were written manually after the fact, leading to incomplete documentation.',
+      'Our solution gives technicians a single web interface to view assigned jobs pulled live from the ERP, record voice memos transcribed by Azure Whisper and summarized by GPT-4o-mini, track time, manage parts, and submit reports in real time.',
+      'As QA & Security Engineer, I owned the entire testing and CI/CD quality layer for the project.'],
+    highlights: ['Wrote automated tests across the full stack using pytest (Python backend), Vitest (React frontend), and Playwright (end-to-end browser testing)',
+      'Built a dedicated security test suite covering SQL injection prevention, XSS sanitization, JWT token tampering detection, and password hashing verification',
+      'Enforced required CI status checks on every pull request — tests, builds, linting, and dependency scanning — with branch protection on main and dev branches',
+      'Validated the complete technician workflow end-to-end on a live Azure deployment connected to the client\'s real ERP system'],
+    link: null, linkNote: '🔒 Private repository — built for a real enterprise client'
+  },
+  chessgpt: {
+    name: 'ChessGPT', role: 'Solo Project · Computer Vision + AI',
+    accent: 'var(--accent)',
+    tags: ['Python','OpenCV','Stockfish','python-chess','Raspberry Pi','Tkinter'],
+    desc: ['ChessGPT is a Raspberry Pi-based computer vision system that bridges the physical and digital worlds of chess. Point a camera at a real chessboard and the system detects piece positions in real time, then suggests the best move using the Stockfish chess engine.',
+      'Chess pieces are marked with color-coded stickers. OpenCV captures frames from the Pi camera, identifies the 8×8 board grid, and analyzes each square for colored markers to determine piece type and player.',
+      'The detected board state is passed to Stockfish via python-chess, and AI-generated move suggestions appear instantly in a custom Tkinter desktop GUI.'],
+    highlights: ['Used OpenCV contour detection and HSV color analysis to identify and track color-coded chess pieces on a physical board via Raspberry Pi camera',
+      'Passed detected board state to the Stockfish chess engine in real time and displayed AI-generated move suggestions in a live desktop GUI',
+      'Designed the full pipeline from image capture to board state tracking to engine output and GUI display',
+      'Built entirely in Python — sole developer from concept to working hardware demo'],
+    link: 'https://github.com/achev2/chess-vision-ai', linkNote: null
+  },
+  grammarlytics: {
+    name: 'Grammarlytics', role: 'Full-Stack Developer · AI Integration',
+    accent: 'var(--accent2)',
+    tags: ['React','TypeScript','Python','Hugging Face','Mantine UI','REST API','C#','.NET'],
+    desc: ['Grammarlytics is an AI-powered grammar assistant that helps users write with more confidence. The core feature is grammar correction with tone rewriting — users paste text, choose a tone (Neutral, Formal, Casual, Academic, or Friendly), and the AI rewrites it accordingly.',
+      'The app also includes an interactive grammar practice system where users select a topic, get an AI-generated sentence to correct, and receive instant feedback. Practice attempts are saved to a personal history tracker.',
+      'A built-in grammar chatbot acts as a conversational tutor. Corrected text can be exported to PDF or Word directly from the browser.'],
+    highlights: ['Built a full-stack AI writing tool with grammar correction, tone rewriting across five styles, and export to PDF and Word',
+      'Developed an interactive grammar practice system with AI-generated prompts, topic selection, answer checking, and personal history tracker',
+      'Integrated Hugging Face NLP models served via a Python/Google Colab inference backend, connected to the React frontend through a REST API',
+      'Built user authentication, profile management, and practice history with full CRUD operations'],
+    link: null, linkNote: '🔒 Academic project repository'
+  },
+  lionsden: {
+    name: 'Lions Den Cinemas', role: 'Full-Stack Contributor · Web & Mobile',
+    accent: '#8fa3bb',
+    tags: ['React Native','Node.js','Express','PostgreSQL','JWT','REST API','JavaScript'],
+    desc: ['Lions Den Cinemas is a full-stack cinema management system. The platform has three surfaces: a cross-platform mobile app (iOS & Android) built with React Native, a responsive web interface, and a comprehensive admin dashboard for cinema staff.',
+      'Customers can browse showtimes, view movie details, purchase tickets and concessions, and select seats on an interactive seat map. The admin panel lets staff manage movies, update showtimes, and monitor inventory in real time.',
+      'I contributed across both frontend and backend, with commits spanning mobile UI, backend controllers, and Azure infrastructure setup.'],
+    highlights: ['Built seat selection UI including grid layout, toggle styles, seat reserve submission, and reservation screens',
+      'Developed backend controllers for tickets, showtimes, and movies including seeded movie data',
+      'Worked on theater listing pages, navigation routing fixes, and showtime modal components',
+      'Set up Azure Functions infrastructure and contributed to the working mobile branch'],
+    link: null, linkNote: '🔒 Team project — private repository'
+  }
+};
 
-  toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
+function showProject(id) {
+  const p = projects[id];
+  const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  const desc = p.desc.map(d => `<p class="proj-page-desc">${d}</p>`).join('');
+  const hl = p.highlights.map(h => `<div class="proj-highlight"><div class="proj-dot"></div><span>${h}</span></div>`).join('');
+  const linkHtml = p.link
+    ? `<a href="${p.link}" target="_blank" class="proj-page-link">↗ View on GitHub</a>`
+    : p.linkNote ? `<p style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">${p.linkNote}</p>` : '';
+
+  document.getElementById('proj-content').innerHTML = `
+    <div style="width:32px;height:2px;border-radius:2px;background:${p.accent};margin-bottom:1.5rem;"></div>
+    <h1 class="proj-page-name">${p.name}</h1>
+    <p class="proj-page-role">${p.role}</p>
+    <div class="proj-page-tags">${tags}</div>
+    <hr class="proj-divider">
+    <p class="proj-section-title">Overview</p>
+    ${desc}
+    <hr class="proj-divider">
+    <p class="proj-section-title">What I did</p>
+    <div class="proj-highlights-list">${hl}</div>
+    <hr class="proj-divider">
+    ${linkHtml}
+  `;
+
+  document.getElementById('main-site').classList.remove('active');
+  document.getElementById('project-page').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showMain() {
+  document.getElementById('project-page').style.display = 'none';
+  document.getElementById('main-site').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const html = document.documentElement;
+const saved = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.12});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
